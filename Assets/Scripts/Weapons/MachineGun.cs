@@ -9,7 +9,7 @@ public class MachineGun : Weapon
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, weaponStats.range))
         {
-            Debug.DrawRay(ray.origin, spreadDirection, Color.green, 1f);
+            Debug.DrawRay(ray.origin, spreadDirection * hit.distance, Color.green, 200f);
             Debug.Log("Hit: " + hit.collider.name);
             if (hit.collider.CompareTag("Enemy"))
             {
