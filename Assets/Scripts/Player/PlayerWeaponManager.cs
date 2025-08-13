@@ -4,9 +4,12 @@ public class PlayerWeaponManager : MonoBehaviour
 {
     [SerializeField] public GameObject equippedWeapon = null;
     [SerializeField] private GameObject[] weaponsInventory = new GameObject[5];
+
     private Weapon equippedWeaponScript;
     private PlayerInputHandler playerInputHandler;
+
     [SerializeField] private Transform weaponPlace;
+
     public void Awake()
     {
         playerInputHandler = GetComponentInParent<PlayerInputHandler>();
@@ -39,7 +42,7 @@ public class PlayerWeaponManager : MonoBehaviour
         Destroy(pickupWeapon);
         DisableCurrentWeapon();
         equippedWeapon = weaponsInventory[indexInventory];
-        // equippedWeapon.GetComponent<Rotation>().enabled = false;
+        equippedWeapon.GetComponent<Rotation>().enabled = false;
         equippedWeapon.GetComponent<BoxCollider>().enabled = false;
         PutWeaponInHolder();
     }
