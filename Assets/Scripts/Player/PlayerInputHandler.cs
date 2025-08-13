@@ -12,17 +12,29 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string rotation = "Rotation";
     [SerializeField] private string jump = "Jump";
     [SerializeField] private string primaryFire = "PrimaryFire";
-
+    
     private InputAction movementAction = null;
     private InputAction rotationAction = null;
     private InputAction jumpAction = null;
     private InputAction primaryFireAction = null;
-
+    
     public Vector2 MovementInput = Vector2.zero;
     public Vector2 RotationInput = Vector2.zero;
-    public bool JumpTriggered = false;
     public bool FirePrimaryTriggered = false;
-
+    
+    private bool jumpTriggered = false;
+    
+    
+    public bool JumpTriggered 
+    { 
+        get 
+        { 
+            bool value = jumpTriggered; 
+            jumpTriggered = false; 
+            return value; 
+        } 
+    }
+    
     private void Awake()
     {
         InputActionMap mapReference = playerControls.FindActionMap(actionMapName);
@@ -32,26 +44,29 @@ public class PlayerInputHandler : MonoBehaviour
         primaryFireAction = mapReference.FindAction(primaryFire);
         SubscribeActionsToEvents();
     }
-    
+
     private void SubscribeActionsToEvents()
     {
         movementAction.performed += ctx => MovementInput = ctx.ReadValue<Vector2>();
         movementAction.canceled += ctx => MovementInput = Vector2.zero;
+
         rotationAction.performed += ctx => RotationInput = ctx.ReadValue<Vector2>();
         rotationAction.canceled += ctx => RotationInput = Vector2.zero;
-        jumpAction.performed += ctx => JumpTriggered = true;
-        jumpAction.canceled += ctx => JumpTriggered = false;
+
+        // Set to true on performed - properties will auto-reset when accessed
+        jumpAction.performed += ctx => jumpTriggered = true;
+
         primaryFireAction.performed += ctx => FirePrimaryTriggered = true;
         primaryFireAction.canceled += ctx => FirePrimaryTriggered = false;
-
     }
+    
     private void OnEnable()
     {
         playerControls.FindActionMap(actionMapName).Enable();
     }
+    
     private void OnDisable()
     {
         playerControls.FindActionMap(actionMapName).Disable();
     }
-
 }

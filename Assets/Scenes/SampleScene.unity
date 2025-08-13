@@ -1887,8 +1887,6 @@ MonoBehaviour:
   primaryFire: PrimaryFire
   MovementInput: {x: 0, y: 0}
   RotationInput: {x: 0, y: 0}
-  JumpTriggered: 0
-  FirePrimaryTriggered: 0
 --- !u!114 &1847023362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1907,7 +1905,7 @@ MonoBehaviour:
   mouseSensitivity: 0.1
   verticalLookLimit: 80
   cc: {fileID: 1847023363}
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 330585545}
   playerInputHandler: {fileID: 1847023361}
 --- !u!143 &1847023363
 CharacterController:
