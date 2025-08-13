@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 currentMovement;
     private float verticalRotation;
-    
     private void Awake()
     {
         mainCamera = GetComponentInChildren<Camera>();
@@ -26,10 +25,8 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Update()
     {
-        Debug.Log(playerInputHandler.JumpTriggered);
         HandleMovement();
         HandleRotation();
-
     }
     private Vector3 CalculateWorldDirection()
     {
@@ -77,5 +74,7 @@ public class PlayerMovement : MonoBehaviour
         ApplyVerticalRotation(mouseYRotation);
     }
     
+  
+
     
 }
