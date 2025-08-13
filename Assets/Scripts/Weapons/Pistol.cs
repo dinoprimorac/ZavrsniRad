@@ -15,7 +15,7 @@ public class Pistol : Weapon
             
             if (hit.collider.CompareTag("Enemy"))
             {
-                DamageEnemy(hit);
+                hit.collider.GetComponent<EnemyHealth>().TakeDamage(weaponStats.damage);
             }
         }
     }

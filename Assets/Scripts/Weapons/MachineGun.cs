@@ -13,7 +13,7 @@ public class MachineGun : Weapon
             Debug.Log("Hit: " + hit.collider.name);
             if (hit.collider.CompareTag("Enemy"))
             {
-                DamageEnemy(hit);
+                hit.collider.GetComponent<EnemyHealth>().TakeDamage(weaponStats.damage);
             }
         }
     }

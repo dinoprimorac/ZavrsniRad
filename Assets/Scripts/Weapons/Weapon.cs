@@ -33,10 +33,7 @@ public abstract class Weapon : MonoBehaviour
         Debug.Log(weaponStats.name + " shot! Bullets left: " + currentAmmo);
         Shoot();
     }
+
     protected abstract void Shoot();
-    protected void DamageEnemy(RaycastHit hit)
-    {
-        EnemyHealth enemyReference = hit.collider.GetComponent<EnemyHealth>();
-        enemyReference.TakeDamage(weaponStats.damage);
-    }
+
 }

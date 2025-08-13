@@ -7,8 +7,9 @@ public class Shotgun : Weapon
     {
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
         RaycastHit hit;
+        EnemyHealth enemyReference = null;
         int numberOfPalletsHit = 0;
-        
+
         for (int i = 0; i < 10; i++)
         {
             Vector3 spreadDirection = ApplySpread(ray.direction);
@@ -19,7 +20,7 @@ public class Shotgun : Weapon
                 {
                     Debug.DrawLine(ray.origin, ray.origin + spreadDirection * hit.distance, Color.green, 3f);
                     numberOfPalletsHit++;
-                    DamageEnemy(hit);
+                    enemyReference = hit.collider.GetComponent<EnemyHealth>();
                 }
                 else
                 {
@@ -27,8 +28,11 @@ public class Shotgun : Weapon
                 }
             }
         }
-       
-       
+
+        if (numberOfPalletsHit > 0)
+        {
+            enemyReference.TakeDamage(numberOfPalletsHit * weaponStats.damage);
+        }
     }
         
     private Vector3 ApplySpread(Vector3 direction){
