@@ -14,22 +14,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController cc;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private PlayerInputHandler playerInputHandler;
-
     private Vector3 currentMovement;
     private float verticalRotation;
-    
     private void Awake()
     {
-        mainCamera = GetComponentInChildren<Camera>();
         cc = GetComponent<CharacterController>();
         playerInputHandler = GetComponent<PlayerInputHandler>();
     }
-    public void Update()
+    public void MovePlayer()
     {
-        Debug.Log(playerInputHandler.JumpTriggered);
         HandleMovement();
         HandleRotation();
-
     }
     private Vector3 CalculateWorldDirection()
     {
@@ -76,6 +71,4 @@ public class PlayerMovement : MonoBehaviour
         ApplyHorizontalRotation(mouseXRotation);
         ApplyVerticalRotation(mouseYRotation);
     }
-    
-    
 }

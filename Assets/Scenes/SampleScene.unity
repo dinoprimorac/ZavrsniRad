@@ -1887,6 +1887,7 @@ MonoBehaviour:
   primaryFire: PrimaryFire
   MovementInput: {x: 0, y: 0}
   RotationInput: {x: 0, y: 0}
+  FirePrimaryTriggered: 0
 --- !u!114 &1847023362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,7 +1901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  jumpHeight: 5
+  jumpHeight: 4
   gravityMultiplier: 1
   mouseSensitivity: 0.1
   verticalLookLimit: 80
@@ -2487,6 +2488,14 @@ PrefabInstance:
     - target: {fileID: 487650786437175408, guid: bc2ff183d2fa85a489fd2669045a76f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1804628148069701269, guid: bc2ff183d2fa85a489fd2669045a76f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7795646
+      objectReference: {fileID: 0}
+    - target: {fileID: 1804628148069701269, guid: bc2ff183d2fa85a489fd2669045a76f6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8620794
       objectReference: {fileID: 0}
     - target: {fileID: 5160456809080254063, guid: bc2ff183d2fa85a489fd2669045a76f6, type: 3}
       propertyPath: m_Name
