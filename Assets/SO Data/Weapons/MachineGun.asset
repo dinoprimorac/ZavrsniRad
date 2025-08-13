@@ -9,9 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11ce8845f2b6c384e9e2119dadbdc1cd, type: 3}
-  m_Name: Kamikaza
+  m_Script: {fileID: 11500000, guid: 627d26a13fc78bb478ff4b6814250aa5, type: 3}
+  m_Name: MachineGun
   m_EditorClassIdentifier: 
-  enemyName: Kamikaza
-  maxHealth: 100
-  attackDamage: 15
+  weaponName: Machine Gun
+  maxAmmo: 100
+  fireRate: 0.1
+  damage: 5
+  range: 400
+  weaponInventoryIndex: 2
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 0

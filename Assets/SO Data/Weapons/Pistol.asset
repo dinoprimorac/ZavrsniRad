@@ -17,7 +17,7 @@ MonoBehaviour:
   fireRate: 1
   damage: 5
   range: 200
-  weaponInventoryIndex: 0
+  weaponInventoryIndex: 1
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0

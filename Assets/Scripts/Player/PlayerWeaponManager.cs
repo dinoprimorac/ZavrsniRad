@@ -1,6 +1,6 @@
 
 using UnityEngine;
-public class WeaponManager : MonoBehaviour
+public class PlayerWeaponManager : MonoBehaviour
 {
     [SerializeField] public GameObject equippedWeapon = null;
     [SerializeField] private GameObject[] weaponsInventory = new GameObject[5];
@@ -58,9 +58,10 @@ public class WeaponManager : MonoBehaviour
         }
         
     }
+    
     private void EnableWeapon()
     {
-        
+
     }
     private void SwitchWeapon(int inventoryIndex)
     {
