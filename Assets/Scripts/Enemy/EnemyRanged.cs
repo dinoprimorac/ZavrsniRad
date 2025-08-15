@@ -30,8 +30,6 @@ public class EnemyRanged : MonoBehaviour
     {
         if (playerTransform == null) return;
 
-        
-
         float distance = Vector3.Distance(transform.position, playerTransform.position);
 
         if (distance <= detectionRadius)
