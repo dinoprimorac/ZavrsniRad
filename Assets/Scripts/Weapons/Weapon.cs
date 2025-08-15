@@ -1,5 +1,3 @@
-
-using System.Data.Common;
 using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public abstract class Weapon : MonoBehaviour
     {
         currentAmmo = weaponStats.maxAmmo;
         playerCamera = GetComponentInParent<Camera>();
-        // UIManager.Instance.UpdateAmmo(currentAmmo);
+        UIManager.Instance.UpdateAmmo(currentAmmo);
     }
     public void TryShoot()
     {
@@ -29,7 +27,7 @@ public abstract class Weapon : MonoBehaviour
     private void HandleShoot()
     {
         currentAmmo--;
-        // UIManager.Instance.UpdateAmmo(currentAmmo);
+        UIManager.Instance.UpdateAmmo(currentAmmo);
         Debug.Log(weaponStats.name + " shot! Bullets left: " + currentAmmo);
         Shoot();
     }

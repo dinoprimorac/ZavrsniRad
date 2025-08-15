@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
+        UpdateHealthUI();
     }
 
     public void TakeDamage(int damage)
@@ -19,16 +20,23 @@ public class PlayerHealth : MonoBehaviour
         {
             KillPlayer();
         }
+        UpdateHealthUI();
     }
 
     public void HealPlayer(int healAmount)
     {
         currentHealth += healAmount;
         Debug.Log("Player has picked up a health item and now has: " + currentHealth + " HP!");
+        UpdateHealthUI();
     }
 
     private void KillPlayer()
     {
         Debug.Log("Player has died!");
+    }
+
+    private void UpdateHealthUI()
+    {
+        UIManager.Instance.UpdateHealth(currentHealth);
     }
 }
