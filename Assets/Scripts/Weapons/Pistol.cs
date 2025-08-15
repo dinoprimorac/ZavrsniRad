@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Pistol : Weapon
 {
-
     protected override void Shoot()
     {
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
