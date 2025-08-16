@@ -9,7 +9,7 @@ public class Shotgun : Weapon
         RaycastHit hit;
         EnemyHealth enemyReference = null;
         int numberOfPalletsHit = 0;
-
+        
         for (int i = 0; i < 10; i++)
         {
             Vector3 spreadDirection = ApplySpread(ray.direction);

@@ -46,14 +46,16 @@ public class PlayerInputHandler : MonoBehaviour
     {
         movementAction.performed += ctx => MovementInput = ctx.ReadValue<Vector2>();
         movementAction.canceled += ctx => MovementInput = Vector2.zero;
+
         rotationAction.performed += ctx => RotationInput = ctx.ReadValue<Vector2>();
         rotationAction.canceled += ctx => RotationInput = Vector2.zero;
+
         jumpAction.performed += ctx => JumpTriggered = true;
         jumpAction.canceled += ctx => JumpTriggered = false;
+        
         primaryFireAction.performed += ctx => FirePrimaryTriggered = true;
         primaryFireAction.canceled += ctx => FirePrimaryTriggered = false;
 
-        // weaponSwapAction.started += ctx => selectedSlot = ctx.control.ToString();
         weaponSwapAction.started += ctx =>
         {
             weaponSwapTriggered = ctx.control.ToString()[ctx.control.ToString().Length-1] - '1';

@@ -1,32 +1,35 @@
 using UnityEngine;
 
 /// <summary>
-/// Simple left-right sway/bob for a weapon holder.
-/// Attach this to your empty holder GameObject (the parent of the weapon).
+/// Left-right sway + slight up-down bob for a weapon holder.
+/// Attach to your empty holder GameObject (parent of the weapon).
 /// </summary>
 public class WeaponLeftRightSwey : MonoBehaviour
 {
-    [Header("Sway")]
-    [Tooltip("How far left/right to move (in local units/meters).")]
-    public float amplitude = 0.03f;
+    [Header("Horizontal (Left–Right)")]
+    [Tooltip("How far to move left/right (local units).")]
+    public float horizontalAmplitude = 0.03f;
+    [Tooltip("How fast the left/right sway cycles (Hz).")]
+    public float horizontalFrequency = 6f;
+    [Tooltip("Local axis to sway along (usually X).")]
+    public Vector3 horizontalAxis = Vector3.right;
 
-    [Tooltip("How fast the sway oscillates (cycles per second).")]
-    public float frequency = 6f;
+    [Header("Vertical (Up–Down)")]
+    [Tooltip("How far to move up/down (keep tiny).")]
+    public float verticalAmplitude = 0.01f; // 'just a little bit'
+    [Tooltip("How fast the up/down bob cycles (Hz).")]
+    public float verticalFrequency = 12f;
+    [Tooltip("Phase offset (radians) so vertical peaks don't align with horizontal.")]
+    [Range(0f, 6.283185f)] public float verticalPhase = 1.5707963f; // ~90°
 
-    [Tooltip("Local axis to sway along (default = X/right).")]
-    public Vector3 localAxis = Vector3.right;
-
-    [Header("When to sway")]
-    [Tooltip("If true, sway only happens while the player is moving.")]
+    [Header("When to animate")]
+    [Tooltip("If true, animate only while the player is moving.")]
     public bool onlyWhileMoving = true;
-
-    [Tooltip("Movement speed threshold to consider 'moving'.")]
+    [Tooltip("Speed threshold considered 'moving'.")]
     public float moveThreshold = 0.05f;
-
-    [Tooltip("How quickly the holder returns to its rest position when stopping.")]
+    [Tooltip("How quickly it returns to rest when stopping.")]
     public float returnSpeed = 12f;
-
-    [Tooltip("Scales sway amount by movement speed a bit for nicer feel.")]
+    [Tooltip("Lightly scale animation with movement speed.")]
     public bool scaleBySpeed = true;
 
     // Cached
@@ -43,75 +46,72 @@ public class WeaponLeftRightSwey : MonoBehaviour
         _root = transform.root != null ? transform.root : transform;
         _lastRootPos = _root.position;
 
-        // Try to auto-detect common movement components on parents
         _cc = _root.GetComponentInChildren<CharacterController>();
         if (_cc == null) _cc = _root.GetComponent<CharacterController>();
+
         _rb = _root.GetComponentInChildren<Rigidbody>();
         if (_rb == null) _rb = _root.GetComponent<Rigidbody>();
     }
 
-    void OnEnable()
-    {
-        transform.localPosition = _restLocalPos;
-    }
-
-    void OnDisable()
-    {
-        transform.localPosition = _restLocalPos;
-    }
+    void OnEnable()  { transform.localPosition = _restLocalPos; }
+    void OnDisable() { transform.localPosition = _restLocalPos; }
 
     void Update()
     {
         float speed = EstimateSpeed();
-
-        bool isMoving = speed > moveThreshold || !onlyWhileMoving;
-        float t = Time.time * frequency;
+        bool isMoving = !onlyWhileMoving || speed > moveThreshold;
 
         if (isMoving)
         {
-            float amount = amplitude;
+            float t = Time.time;
+
+            // Gentle speed-based scaling (optional)
+            float scale = 1f;
             if (scaleBySpeed)
             {
-                // Lightly scale with speed so faster movement = slightly bigger sway
-                float s = Mathf.Clamp01((speed - moveThreshold) * 0.75f); // tweak factor
-                amount *= Mathf.Lerp(0.7f, 1.2f, s);
+                float s = Mathf.Clamp01((speed - moveThreshold) * 0.75f);
+                scale = Mathf.Lerp(0.7f, 1.2f, s);
             }
 
-            Vector3 offset = (transform.TransformDirection(localAxis.normalized) - transform.position).normalized; 
-            // The above ensures axis is in LOCAL space:
-            offset = localAxis.normalized * (Mathf.Sin(t) * amount);
+            // Normalize local axes (fallbacks if user leaves them at zero)
+            Vector3 hAxis = (horizontalAxis.sqrMagnitude > 0f ? horizontalAxis : Vector3.right).normalized;
+            Vector3 vAxis = Vector3.up; // fixed up/down axis (local)
 
+            // Compute offsets in LOCAL space
+            float h = Mathf.Sin(t * horizontalFrequency) * horizontalAmplitude * scale;
+            float v = Mathf.Sin(t * verticalFrequency + verticalPhase) * verticalAmplitude * scale;
+
+            Vector3 offset = hAxis * h + vAxis * v;
             transform.localPosition = _restLocalPos + offset;
         }
         else
         {
             // Smoothly return to rest when not moving
-            transform.localPosition = Vector3.Lerp(transform.localPosition, _restLocalPos, returnSpeed * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(
+                transform.localPosition,
+                _restLocalPos,
+                returnSpeed * Time.deltaTime
+            );
         }
     }
 
     float EstimateSpeed()
     {
-        // Prefer CharacterController velocity if present
         if (_cc != null)
         {
-            Vector3 v = _cc.velocity;
-            v.y = 0f;
+            Vector3 v = _cc.velocity; v.y = 0f;
             return v.magnitude;
         }
 
-        // Next, Rigidbody linear velocity if present
         if (_rb != null)
         {
-            Vector3 v = _rb.linearVelocity;
-            v.y = 0f;
+            Vector3 v = _rb.linearVelocity; v.y = 0f;
             return v.magnitude;
         }
 
-        // Fallback: root world-position delta
         Vector3 p = _root.position;
-        float speed = (_lastRootPos - p).magnitude / Mathf.Max(Time.deltaTime, 0.0001f);
+        float speed = (p - _lastRootPos).magnitude / Mathf.Max(Time.deltaTime, 0.0001f);
         _lastRootPos = p;
         return speed;
-    }
+        }
 }

@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class DoorManager : MonoBehaviour
 {
-    [SerializeField] private Animator doorAnim;
+    [SerializeField] private Animator doorAnimator;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            doorAnim.SetTrigger("OpenDoor");
+            doorAnimator.SetTrigger("OpenDoor");
         }
     }
     
     void OnTriggerExit(Collider other)
     {
-        doorAnim.SetTrigger("CloseDoor");
+        doorAnimator.SetTrigger("CloseDoor");
     }
 
 }

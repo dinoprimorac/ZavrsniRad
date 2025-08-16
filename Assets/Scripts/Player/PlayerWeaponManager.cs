@@ -14,6 +14,7 @@ public class PlayerWeaponManager : MonoBehaviour
     {
         playerInputHandler = GetComponentInParent<PlayerInputHandler>();
     }
+
     public void Update()
     {
         if (playerInputHandler.FirePrimaryTriggered && equippedWeapon)
@@ -75,6 +76,7 @@ public class PlayerWeaponManager : MonoBehaviour
 
     private void SwitchWeapon(int inventoryIndex)
     {
+        if (weaponsInventory[inventoryIndex] == null) return;
         DisableCurrentWeapon();
         equippedWeapon = weaponsInventory[inventoryIndex];
         equippedWeapon.SetActive(true);
