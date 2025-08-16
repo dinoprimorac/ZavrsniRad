@@ -11,6 +11,6 @@ public class TestiranjeInputaSkripta : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(playerInputHandler.weaponSlot);
+        Debug.Log(playerInputHandler.weaponSwapTriggered);
     }
 }

@@ -1573,7 +1573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &976408574
 Transform:
   m_ObjectHideFlags: 0
@@ -2209,12 +2209,13 @@ MonoBehaviour:
   rotation: Rotation
   jump: Jump
   primaryFire: PrimaryFire
-  weapon1: Weapon
+  weaponSwap: WeaponSwap
   MovementInput: {x: 0, y: 0}
   RotationInput: {x: 0, y: 0}
   JumpTriggered: 0
   FirePrimaryTriggered: 0
-  WeaponInputTriggered: 0
+  selectedSlot: 
+  weaponSwapTriggered: -1
 --- !u!114 &1847023362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2866,6 +2867,10 @@ PrefabInstance:
     - target: {fileID: 4636437325832796598, guid: 469db280c8558bb4bac45a3dda5efa57, type: 3}
       propertyPath: m_Name
       value: EnemyLunger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4636437325832796598, guid: 469db280c8558bb4bac45a3dda5efa57, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6695695112005525086, guid: 469db280c8558bb4bac45a3dda5efa57, type: 3}
       propertyPath: player

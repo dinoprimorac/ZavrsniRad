@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerWeaponManager : MonoBehaviour
 {
     [SerializeField] public GameObject equippedWeapon = null;
-    [SerializeField] private GameObject[] weaponsInventory = new GameObject[5];
+    [SerializeField] private GameObject[] weaponsInventory = new GameObject[6];
 
     private Weapon equippedWeaponScript;
     private PlayerInputHandler playerInputHandler;
@@ -25,6 +25,11 @@ public class PlayerWeaponManager : MonoBehaviour
         {
             Debug.Log("You don't have a weapon!");
         }
+
+        if (playerInputHandler.weaponSwapTriggered > -1)
+        {
+            SwitchWeapon(playerInputHandler.weaponSwapTriggered);
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -36,8 +41,8 @@ public class PlayerWeaponManager : MonoBehaviour
     }
     private void AddWeapon(GameObject pickupWeapon)
     {
-        
-        int indexInventory = pickupWeapon.GetComponent<Weapon>().weaponStats.weaponInventoryIndex;
+
+        int indexInventory = pickupWeapon.GetComponent<Weapon>().weaponStats.weaponInventoryIndex-1;
         weaponsInventory[indexInventory] = Instantiate(pickupWeapon);
         Destroy(pickupWeapon);
         DisableCurrentWeapon();
@@ -45,6 +50,7 @@ public class PlayerWeaponManager : MonoBehaviour
         equippedWeapon.GetComponent<Rotation>().enabled = false;
         equippedWeapon.GetComponent<BoxCollider>().enabled = false;
         PutWeaponInHolder();
+        equippedWeaponScript = equippedWeapon.GetComponent<Weapon>();
     }
     private void PutWeaponInHolder()
     {
@@ -66,9 +72,13 @@ public class PlayerWeaponManager : MonoBehaviour
     {
 
     }
+
     private void SwitchWeapon(int inventoryIndex)
     {
-        // igrač preko brojeva na tipkovnici bira koje oružje želi trenutno imati
+        DisableCurrentWeapon();
+        equippedWeapon = weaponsInventory[inventoryIndex];
+        equippedWeapon.SetActive(true);
+        equippedWeaponScript = equippedWeapon.GetComponent<Weapon>();
     }
     private void AddAmmo()
     {

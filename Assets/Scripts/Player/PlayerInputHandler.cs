@@ -20,7 +20,6 @@ public class PlayerInputHandler : MonoBehaviour
     private InputAction rotationAction = null;
     private InputAction jumpAction = null;
     private InputAction primaryFireAction = null;
-    //
     private InputAction weaponSwapAction = null;
 
     public Vector2 MovementInput = Vector2.zero;
@@ -30,7 +29,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public string selectedSlot;
     private char weaponSlotChar;
-    public int weaponSlot = -1;
+    public int weaponSwapTriggered = -1;
 
     private void Awake()
     {
@@ -57,15 +56,15 @@ public class PlayerInputHandler : MonoBehaviour
         // weaponSwapAction.started += ctx => selectedSlot = ctx.control.ToString();
         weaponSwapAction.started += ctx =>
         {
-            weaponSlot = ctx.control.ToString()[ctx.control.ToString().Length-1] - '0';
+            weaponSwapTriggered = ctx.control.ToString()[ctx.control.ToString().Length-1] - '1';
         };
-        weaponSwapAction.canceled += ctx => selectedSlot = "";
+        weaponSwapAction.canceled += ctx => weaponSwapTriggered = -1;
 
     }
 
     private void LateUpdate()
     {
-        weaponSlot = -1;
+        weaponSwapTriggered = -1;
     }
 
     private void OnEnable()
