@@ -1690,6 +1690,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1068565105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068565100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dd0ebb4fe43ac64388edf7544f0db4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponAnimation: {fileID: 1068565104}
 --- !u!1 &1084244677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,33 +2476,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820668149}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1840901056 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3483682718326922963, guid: 92da3c0432a9e394dbfc88e23cff2bad, type: 3}
-  m_PrefabInstance: {fileID: 1588736285817419158}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1840901060
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840901056}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 79f9eca09df450e4ca3aa79c443d2bb9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1847023360 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3378752935662047323, guid: 2a6486dba0999cb47928b737f0c1795a, type: 3}
@@ -3028,6 +3014,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4678751254163431474, guid: 92da3c0432a9e394dbfc88e23cff2bad, type: 3}
+      propertyPath: weaponAnimation
+      value: 
+      objectReference: {fileID: 1068565105}
     - target: {fileID: 5068947624109174074, guid: 92da3c0432a9e394dbfc88e23cff2bad, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -3132,12 +3122,12 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3483682718326922963, guid: 92da3c0432a9e394dbfc88e23cff2bad, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1840901060}
     - targetCorrespondingSourceObject: {fileID: 6503768710809802460, guid: 92da3c0432a9e394dbfc88e23cff2bad, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1068565104}
+    - targetCorrespondingSourceObject: {fileID: 6503768710809802460, guid: 92da3c0432a9e394dbfc88e23cff2bad, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1068565105}
   m_SourcePrefab: {fileID: 100100000, guid: 92da3c0432a9e394dbfc88e23cff2bad, type: 3}
 --- !u!1001 &2580995254976131933
 PrefabInstance:

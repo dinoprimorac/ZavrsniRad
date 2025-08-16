@@ -5,16 +5,15 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] public Camera playerCamera;
     private int currentAmmo = 0;
     private float nextTimeToFire = 0f;
-    private Animator weaponAnimation;
+    [SerializeField] protected PlayAnimation weaponAnimation;
 
     private void Awake()
     {
         currentAmmo = weaponStats.maxAmmo;
         playerCamera = GetComponentInParent<Camera>();
-        weaponAnimation = GetComponent<Animator>();
         // UIManager.Instance.UpdateAmmo(currentAmmo);
     }
-    
+
     public void TryShoot()
     {
         if (currentAmmo <= 0)
@@ -26,7 +25,6 @@ public abstract class Weapon : MonoBehaviour
         {
             nextTimeToFire = Time.time + weaponStats.fireRate;
             HandleShoot();
-            weaponAnimation.SetTrigger("Fire");
         }
     }
     private void HandleShoot()
@@ -34,6 +32,7 @@ public abstract class Weapon : MonoBehaviour
         currentAmmo--;
         UIManager.Instance.UpdateAmmo(currentAmmo);
         Debug.Log(weaponStats.name + " shot! Bullets left: " + currentAmmo);
+        weaponAnimation.PlayWeaponAnimation();
         Shoot();
     }
 
