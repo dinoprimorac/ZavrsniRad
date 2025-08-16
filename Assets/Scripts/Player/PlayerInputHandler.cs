@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,16 +13,24 @@ public class PlayerInputHandler : MonoBehaviour
     [SerializeField] private string rotation = "Rotation";
     [SerializeField] private string jump = "Jump";
     [SerializeField] private string primaryFire = "PrimaryFire";
+    //
+    [SerializeField] private string weaponSwap = "WeaponSwap";
 
     private InputAction movementAction = null;
     private InputAction rotationAction = null;
     private InputAction jumpAction = null;
     private InputAction primaryFireAction = null;
+    //
+    private InputAction weaponSwapAction = null;
 
     public Vector2 MovementInput = Vector2.zero;
     public Vector2 RotationInput = Vector2.zero;
     public bool JumpTriggered = false;
     public bool FirePrimaryTriggered = false;
+
+    public string selectedSlot;
+    private char weaponSlotChar;
+    public int weaponSlot = -1;
 
     private void Awake()
     {
@@ -30,9 +39,10 @@ public class PlayerInputHandler : MonoBehaviour
         rotationAction = mapReference.FindAction(rotation);
         jumpAction = mapReference.FindAction(jump);
         primaryFireAction = mapReference.FindAction(primaryFire);
+        weaponSwapAction = mapReference.FindAction(weaponSwap);
         SubscribeActionsToEvents();
     }
-    
+
     private void SubscribeActionsToEvents()
     {
         movementAction.performed += ctx => MovementInput = ctx.ReadValue<Vector2>();
@@ -44,7 +54,20 @@ public class PlayerInputHandler : MonoBehaviour
         primaryFireAction.performed += ctx => FirePrimaryTriggered = true;
         primaryFireAction.canceled += ctx => FirePrimaryTriggered = false;
 
+        // weaponSwapAction.started += ctx => selectedSlot = ctx.control.ToString();
+        weaponSwapAction.started += ctx =>
+        {
+            weaponSlot = ctx.control.ToString()[ctx.control.ToString().Length-1] - '0';
+        };
+        weaponSwapAction.canceled += ctx => selectedSlot = "";
+
     }
+
+    private void LateUpdate()
+    {
+        weaponSlot = -1;
+    }
+
     private void OnEnable()
     {
         playerControls.FindActionMap(actionMapName).Enable();

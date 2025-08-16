@@ -2166,6 +2166,7 @@ GameObject:
   - component: {fileID: 1847023361}
   - component: {fileID: 1847023364}
   - component: {fileID: 1847023365}
+  - component: {fileID: 1847023366}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -2208,10 +2209,12 @@ MonoBehaviour:
   rotation: Rotation
   jump: Jump
   primaryFire: PrimaryFire
+  weapon1: Weapon
   MovementInput: {x: 0, y: 0}
   RotationInput: {x: 0, y: 0}
   JumpTriggered: 0
   FirePrimaryTriggered: 0
+  WeaponInputTriggered: 0
 --- !u!114 &1847023362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,6 +2293,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!114 &1847023366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847023359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b856339a19249e41af71b7ae74bc066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInputHandler: {fileID: 1847023361}
 --- !u!1 &2022480470
 GameObject:
   m_ObjectHideFlags: 0
