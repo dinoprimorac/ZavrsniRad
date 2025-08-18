@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Kamikaza
   m_EditorClassIdentifier: 
   enemyName: Kamikaza
-  maxHealth: 100
+  maxHealth: 15
   attackDamage: 15
