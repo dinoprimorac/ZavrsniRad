@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Pistol
   maxAmmo: 20
-  fireRate: 1
+  fireRate: 0.7
   damage: 5
   range: 200
   weaponInventoryIndex: 1

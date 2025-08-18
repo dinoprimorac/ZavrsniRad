@@ -5,13 +5,14 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] public Camera playerCamera;
     private int currentAmmo = 0;
     private float nextTimeToFire = 0f;
-    [SerializeField] protected PlayAnimation weaponAnimation;
+    [SerializeField] protected Animator weaponAnimation;
 
     private void Awake()
     {
         currentAmmo = weaponStats.maxAmmo;
         playerCamera = GetComponentInParent<Camera>();
-        // UIManager.Instance.UpdateAmmo(currentAmmo);
+        UIManager.Instance.UpdateAmmo(currentAmmo);
+        weaponAnimation = GetComponent<Animator>();
     }
 
     public void TryShoot()
@@ -27,12 +28,12 @@ public abstract class Weapon : MonoBehaviour
             HandleShoot();
         }
     }
+
     private void HandleShoot()
     {
         currentAmmo--;
         UIManager.Instance.UpdateAmmo(currentAmmo);
         Debug.Log(weaponStats.name + " shot! Bullets left: " + currentAmmo);
-        weaponAnimation.PlayWeaponAnimation();
         Shoot();
     }
 
