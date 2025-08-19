@@ -97,3 +97,33 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Ignore textures/images
+*.png
+*.jpg
+*.jpeg
+*.tga
+*.psd
+
+# Ignore 3D models
+*.fbx
+*.obj
+*.blend
+
+# Ignore audio
+*.mp3
+*.wav
+*.ogg
+
+# Unity auto-generated files (you almost never want these)
+[Ll]ibrary/
+[Tt]emp/
+[Bb]uild/
+[Bb]uilds/
+[Pp]rojectSettings/EditorBuildSettings.asset
+
+# Ignore other heavy files
+*.zip
+*.rar
+*.unitypackage
+

@@ -15,11 +15,12 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         if (cc.velocity.magnitude > 0)
         {
-            playerAnimation.SetBool("WeaponSwayActive", true);
+            playerAnimation.SetTrigger("StartedMoving");
+            playerAnimation.SetBool("IsMoving", true);
         }
         else
         {
-            playerAnimation.SetBool("WeaponSwayActive", false);
+            playerAnimation.SetBool("IsMoving", false);
         }
     }
 }
