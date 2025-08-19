@@ -1,17 +1,18 @@
 using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
-    public WeaponStatsSO weaponStats;
-    [SerializeField] public Camera playerCamera;
-    private int currentAmmo = 0;
+    [SerializeField] public WeaponStatsSO weaponStats;
+    public int currentAmmo { get; private set; }
     private float nextTimeToFire = 0f;
-    [SerializeField] protected Animator weaponAnimation;
 
+    [SerializeField] protected Animator weaponAnimation;
+    [SerializeField] public Camera playerCamera;
+    
     private void Awake()
     {
-        currentAmmo = weaponStats.maxAmmo;
+        currentAmmo = 0;
+        // currentAmmo = weaponStats.maxAmmo;
         playerCamera = GetComponentInParent<Camera>();
-        UIManager.Instance.UpdateAmmo(currentAmmo);
         weaponAnimation = GetComponent<Animator>();
     }
 
@@ -19,7 +20,7 @@ public abstract class Weapon : MonoBehaviour
     {
         if (currentAmmo <= 0)
         {
-            Debug.Log(weaponStats.name + " is out of ammo!");
+            UIManager.Instance.AlertPlayer("Out of Ammo!");
             return;
         }
         if (Time.time >= nextTimeToFire)

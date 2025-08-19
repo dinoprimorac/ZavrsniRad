@@ -233,6 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6313397936291103329}
+  - component: {fileID: 7332593334580492512}
   m_Layer: 3
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -248,13 +249,35 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3006918447305827151}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.251, y: -0.153, z: 0.33}
+  m_LocalRotation: {x: 0.032675162, y: -0, z: -0, w: 0.99946606}
+  m_LocalPosition: {x: 0.154, y: -0.162, z: 0.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6388162276547606808}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3.745, y: 0, z: 0}
+--- !u!95 &7332593334580492512
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006918447305827151}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dc4957905a72286488b0c2796389d320, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6533787082332296616
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,13 +379,19 @@ MonoBehaviour:
   rotation: Rotation
   jump: Jump
   primaryFire: PrimaryFire
+  secondaryFire: SecondaryFire
   weaponSwap: WeaponSwap
+  action: Action
+  pause: Pause
   MovementInput: {x: 0, y: 0}
   RotationInput: {x: 0, y: 0}
   JumpTriggered: 0
   FirePrimaryTriggered: 0
+  FireSecondaryTriggered: 0
   selectedSlot: 
   weaponSwapTriggered: -1
+  InteractionTriggered: 0
+  PauseTriggered: 0
 --- !u!114 &8552361701291739382
 MonoBehaviour:
   m_ObjectHideFlags: 0

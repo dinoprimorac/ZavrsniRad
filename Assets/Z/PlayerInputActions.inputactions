@@ -51,18 +51,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PauseGame",
+                    "name": "SecondaryFire",
                     "type": "Button",
-                    "id": "86201c0b-da5c-43bb-afaf-150eeabe8441",
+                    "id": "e32f5c8f-07c8-4e0d-93a9-bc938a7eb397",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SecondaryFire",
+                    "name": "Action",
                     "type": "Button",
-                    "id": "e32f5c8f-07c8-4e0d-93a9-bc938a7eb397",
+                    "id": "94e096b6-78e4-43a5-8a8b-63d2e73ebbd4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "5a49c547-6b75-4297-971b-304391556dad",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -226,23 +235,34 @@
                 },
                 {
                     "name": "",
-                    "id": "8c4e5dc1-0200-49d8-88a8-04e7e7b8f875",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PauseGame",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "6d0ecaa1-94e0-4d61-8791-f6bf0a8b3846",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "SecondaryFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99342ddf-b75d-490b-93fb-a097aa8515cf",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "08ec89fd-2d62-4a8c-9b1f-445d96692a26",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

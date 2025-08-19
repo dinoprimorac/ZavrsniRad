@@ -10,12 +10,18 @@ public class PlayerWeaponManager : MonoBehaviour
 
     [SerializeField] private Transform weaponPlace;
 
-    public void Awake()
+    private void Awake()
     {
-        playerInputHandler = GetComponentInParent<PlayerInputHandler>();
+        playerInputHandler = GetComponent<PlayerInputHandler>();
     }
 
-    public void Update()
+    private void Update()
+    {
+        HandleWeaponShooting();
+        HandleWeaponSwapping();
+    }
+
+    private void HandleWeaponShooting()
     {
         if (playerInputHandler.FirePrimaryTriggered && equippedWeapon)
         {
@@ -26,24 +32,32 @@ public class PlayerWeaponManager : MonoBehaviour
         {
             Debug.Log("You don't have a weapon!");
         }
+    }
 
+    private void HandleWeaponSwapping()
+    {
         if (playerInputHandler.weaponSwapTriggered > -1)
         {
             SwitchWeapon(playerInputHandler.weaponSwapTriggered);
         }
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Weapon"))
         {
             AddWeapon(other.gameObject);
-            Debug.Log("Igrač je pokupio oružje!");
+
+            Weapon newWeapon = other.GetComponent<Weapon>();
+            newWeapon.enabled = true;
+            UIManager.Instance.UpdateAmmo(newWeapon.currentAmmo);
         }
     }
+    
     private void AddWeapon(GameObject pickupWeapon)
     {
 
-        int indexInventory = pickupWeapon.GetComponent<Weapon>().weaponStats.weaponInventoryIndex-1;
+        int indexInventory = pickupWeapon.GetComponent<Weapon>().weaponStats.weaponInventoryIndex - 1;
         weaponsInventory[indexInventory] = Instantiate(pickupWeapon);
         Destroy(pickupWeapon);
         DisableCurrentWeapon();
