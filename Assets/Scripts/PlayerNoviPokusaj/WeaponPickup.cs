@@ -1,16 +1,20 @@
 using UnityEngine;
 
-public class WeaponPickup : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+[RequireComponent(typeof(Collider))]
+public class WeaponPickup : MonoBehaviour {
+    [SerializeField] private WeaponDefinition definition;
+
+    private void Reset() {
+        var col = GetComponent<Collider>();
+        col.isTrigger = true;
+        gameObject.tag = "Pickup"; // optional
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.TryGetComponent(out WeaponInventory inv)) {
+            inv.AddWeapon(definition);
+            Destroy(gameObject);
+        }
     }
 }
