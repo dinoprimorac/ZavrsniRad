@@ -1,5 +1,5 @@
 using UnityEngine;
-public abstract class Weapon : MonoBehaviour, IWeapon
+public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] public WeaponStatsSO weaponStats;
     public int currentAmmo { get; private set; }
