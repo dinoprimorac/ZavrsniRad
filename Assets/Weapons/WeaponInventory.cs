@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponInventory : MonoBehaviour
@@ -11,7 +12,7 @@ public class WeaponInventory : MonoBehaviour
     [SerializeField] private Weapon[] weaponInventory = new Weapon[6];
     [SerializeField] private int equippedIndex;
 
-    private Weapon currentWeapon;
+    [SerializeField] private Weapon currentWeapon;
 
     public event Action<int, GameObject> OnEquippedChanged;
     public event Action<int, int> OnAmmoChanged;
@@ -27,40 +28,37 @@ public class WeaponInventory : MonoBehaviour
 
     public void CollectWeapon(WeaponDefinition wpDef)
     {
-        var inventoryIndex = wpDef.assignedInventorySlot;
-        if (inventoryIndex == equippedIndex)
+        int inventoryIndex = wpDef.assignedInventorySlot;
+
+        if (weaponInventory[inventoryIndex] != null)
         {
-            // moguće dodati logiku da se samo doda ammoa na to oružje
             return;
         }
 
-        GameObject collectedWeapon = Instantiate(wpDef.prefab, weaponHolder);
-        collectedWeapon.transform.localPosition = Vector3.zero;
-        collectedWeapon.transform.localEulerAngles = Vector3.zero;
-        collectedWeapon.SetActive(false);
+        GameObject wpObject = Instantiate(wpDef.prefab, weaponHolder);
+        wpObject.GetComponent<BoxCollider>().enabled = false;
+        wpObject.transform.localPosition = Vector3.zero;
+        wpObject.transform.localRotation = Quaternion.identity;
+        wpObject.SetActive(false);
 
-        collectedWeapon.GetComponent<BoxCollider>().enabled = false;
+        Weapon wpScript = wpObject.GetComponent<Weapon>();
 
-        Weapon w = collectedWeapon.GetComponent<Weapon>();
 
-        w.ApplyWeaponData(wpDef);
-        w.Init(this, playerCamera);
+        wpScript.ApplyWeaponData(wpDef);
+        wpScript.Init(this, playerCamera);
 
-        weaponInventory[inventoryIndex] = w;
-
-        Debug.Log("Došlo je do kraja, ide swap!");
+        weaponInventory[inventoryIndex] = wpScript;
 
         SwapWeapon(inventoryIndex);
-
     }
 
     public void SwapWeapon(int swapIndex)
     {
-
         if (weaponInventory[swapIndex] == null)
-        {
             return;
-        }
+
+        if (currentWeapon != null)
+            currentWeapon.gameObject.SetActive(false);
 
         equippedIndex = swapIndex;
         currentWeapon = weaponInventory[swapIndex];
@@ -68,7 +66,7 @@ public class WeaponInventory : MonoBehaviour
 
         NotifyAmmoChanged(currentWeapon);
         OnEquippedChanged?.Invoke(equippedIndex, currentWeapon.gameObject);
-        
+
     }
 
     public void NotifyAmmoChanged(Weapon weapon) {

@@ -6,14 +6,9 @@ public class WeaponPickup : MonoBehaviour
     [Header("Weapon Definition")]
     [SerializeField] private WeaponDefinition weaponDef;
 
-    private void Awake()
-    {
-        // weaponDef = GetComponent<WeaponDefinition>();
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        // Provjeri da li je igrač
+        // Provjeri da li je igrač u koliziji
         if (!other.CompareTag("Player")) return;
 
         var inventory = other.GetComponent<WeaponInventory>();
@@ -23,7 +18,10 @@ public class WeaponPickup : MonoBehaviour
             return;
         }
 
+        // Dodaj oružje u inventory
+        Debug.Log("Došao do collect funkcije");
         inventory.CollectWeapon(weaponDef);
+
 
         Destroy(gameObject);
     }

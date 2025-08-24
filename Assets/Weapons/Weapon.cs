@@ -5,7 +5,7 @@ public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected WeaponDefinition wpData;
 
-    protected int currentAmmo;
+    [SerializeField] protected int currentAmmo;
     protected float nextFireTime;
     protected Camera playerCam;
     protected WeaponInventory inventory;
@@ -45,10 +45,20 @@ public abstract class Weapon : MonoBehaviour
         inventory?.NotifyAmmoChanged(this);
 
         HandleShoot();
-
-        
     }
 
-    
     protected abstract void HandleShoot();
+
+    protected Vector3 ApplySpread(Vector3 baseDirection, float spreadDegrees)
+    {
+        if (spreadDegrees <= 0f) return baseDirection;
+
+        Vector2 spread = UnityEngine.Random.insideUnitCircle * spreadDegrees;
+
+        Vector3 right = playerCam.transform.right;
+        Vector3 up = playerCam.transform.up;
+
+        Vector3 spreadDirection = baseDirection + spread.x * right + spread.y * up;
+        return spreadDirection.normalized;
+    }
 }
