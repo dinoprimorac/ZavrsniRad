@@ -1,7 +1,5 @@
 using UnityEngine;
 
-public interface IDamageable { void TakeDamage(int amount); }
-
 public class AttackHitbox : MonoBehaviour
 {
     public string playerTag = "Player";
