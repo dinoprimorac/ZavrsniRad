@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 65262804aa1596948b91da48e4d41edb
+=======
+guid: 271045c210d440e49a54f8124732baf3
+>>>>>>> parent of 3e1a9bf (Napravljen UI za prikazivanje healtha)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

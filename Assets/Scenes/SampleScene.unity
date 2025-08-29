@@ -125,6 +125,7 @@ Transform:
   m_PrefabInstance: {fileID: 291421074034275889}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_GameObject: {fileID: 26415204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -357,6 +358,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81658908}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of 3e1a9bf (Napravljen UI za prikazivanje healtha)
 =======
 >>>>>>> parent of 3e1a9bf (Napravljen UI za prikazivanje healtha)
 --- !u!1 &154169259

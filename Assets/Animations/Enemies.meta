@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animations/Enemies.meta
 guid: 5b0f619081841ae4faf6d64349add1d6
+========
+guid: 271045c210d440e49a54f8124732baf3
+>>>>>>>> parent of 3e1a9bf (Napravljen UI za prikazivanje healtha):Assets/Animations/Enemies/Doll.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
