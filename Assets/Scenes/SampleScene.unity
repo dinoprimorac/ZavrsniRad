@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 26415213}
   - component: {fileID: 26415212}
   m_Layer: 0
-  m_Name: KamikazeEnemy
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,18 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25832f5796114a48b0e46c3db27a348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 94b654751eb437c4e8d5f2ca47df0752, type: 2}
-  eye: {fileID: 217118410}
-  losMask:
-    m_Bits: 4294967295
-  playerTag: Player
-  startAggro: 1
-  requireLOSToAttack: 0
-  <Target>k__BackingField: {fileID: 0}
-  <State>k__BackingField: 0
-  agent: {fileID: 0}
-  health: {fileID: 0}
-  hasAggro: 0
 --- !u!114 &26415210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,8 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c3e98b65ac2f9148ad8072f6df74e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
-  <Current>k__BackingField: 0
 --- !u!114 &26415212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,15 +215,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942c3cc0641ad5140ab4ed74f7cc958d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerDistance: 8
-  apexHeight: 2.5
-  recovery: 0.8
-  landingDamage: 12
-  hitRadius: 1.2
-  groundMask:
-    m_Bits: 4294967295
-  rb: {fileID: 0}
-  agent: {fileID: 0}
 --- !u!54 &26415213
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -634,37 +611,6 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.8382745, y: 0.6199961, z: 7.459927}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &278352278
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 278352279}
-  m_Layer: 0
-  m_Name: EnemyDoll
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &278352279
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278352278}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5730512, y: 1.6889658, z: 2.5979967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2475,6 +2421,5 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 1682536423}
   - {fileID: 1003187046}
-  - {fileID: 278352279}
   - {fileID: 26415205}
   - {fileID: 879096711}
