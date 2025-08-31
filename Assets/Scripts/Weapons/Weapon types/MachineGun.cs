@@ -9,9 +9,10 @@ public class MachineGun : Weapon
         Ray ray = new Ray(playerCam.transform.position, playerCam.transform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, WeaponData.weaponMaxRange))
+        if (Physics.Raycast(ray, out hit, wpData.weaponMaxRange))
         {
             Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.blue, 1f);
+
         }
         else
         {
