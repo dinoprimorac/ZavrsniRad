@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     public Transform Target;
-    public float UpdateSpeed = 0.1f;
+    public float updateSpeed = 0.1f;
 
     private NavMeshAgent Agent;
 
@@ -21,7 +21,7 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator FollowTarget()
     {
-        WaitForSeconds Wait = new WaitForSeconds(UpdateSpeed);
+        WaitForSeconds Wait = new WaitForSeconds(updateSpeed);
         while (enabled)
         {
             Agent.SetDestination(Target.transform.position);

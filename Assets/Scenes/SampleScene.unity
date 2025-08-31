@@ -566,6 +566,7 @@ GameObject:
   - component: {fileID: 400087991}
   - component: {fileID: 400087995}
   - component: {fileID: 400087996}
+  - component: {fileID: 400087997}
   m_Layer: 6
   m_Name: Enemy1
   m_TagString: Untagged
@@ -625,7 +626,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 688601910}
-  UpdateSpeed: 0.1
+  updateSpeed: 0.1
+--- !u!114 &400087997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400087990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ea1da2da419c7b48a628d4d570d7b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 0}
+  agent: {fileID: 0}
+  enemyConfig: {fileID: 11400000, guid: c9cbd21aee156be48978a1da9f3b15e9, type: 2}
+  health: 100
 --- !u!4 &400871391 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8300553343437966529, guid: 7be28be387f2d5f4f8f3f6d9171c8e70, type: 3}
