@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IDamageable
+public class PlayerHealth : MonoBehaviour
 {
     public int MaxHealth { get; private set; } = 100;
     public int CurrentHealth { get; private set; }
