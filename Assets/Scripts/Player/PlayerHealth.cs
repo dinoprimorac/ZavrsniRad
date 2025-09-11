@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour, IDamageable
 {
-    public int MaxHealth { get; private set; } = 100;
-    public int CurrentHealth { get; private set; }
+    public int MaxHealth { get; set; } = 100;
+    public int CurrentHealth { get; set; }
     public bool IsDead { get; private set; }
 
     public static event Action<int> HealthChanged;

@@ -71,7 +71,10 @@ public class PlayerInputHandler : MonoBehaviour
         secondaryFireAction.performed += ctx => FireSecondaryTriggered = true;
         secondaryFireAction.canceled += ctx => FireSecondaryTriggered = false;
 
-        weaponSwapAction.started += ctx => weaponSwapTriggered = ctx.control.ToString()[ctx.control.ToString().Length - 1] - '1';
+        weaponSwapAction.started += ctx =>
+        {
+            weaponSwapTriggered = ctx.control.ToString()[ctx.control.ToString().Length - 1] - '1';
+        };
         weaponSwapAction.canceled += ctx => weaponSwapTriggered = -1;
 
         interactAction.started += ctx => InteractionTriggered = true;
@@ -91,6 +94,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         playerControls.FindActionMap(actionMapName).Enable();
     }
+
     private void OnDisable()
     {
         playerControls.FindActionMap(actionMapName).Disable();

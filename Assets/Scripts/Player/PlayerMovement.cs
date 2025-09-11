@@ -73,8 +73,4 @@ public class PlayerMovement : MonoBehaviour
         ApplyHorizontalRotation(mouseXRotation);
         ApplyVerticalRotation(mouseYRotation);
     }
-    
-  
-
-    
 }

@@ -21,8 +21,6 @@ public class WeaponPickup : MonoBehaviour
         // Dodaj oružje u inventory
         Debug.Log("Došao do collect funkcije");
         inventory.CollectWeapon(weaponDef);
-
-
         Destroy(gameObject);
     }
 }
