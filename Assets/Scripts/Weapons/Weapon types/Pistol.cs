@@ -3,9 +3,11 @@ using UnityEngine;
 public class Pistol : Weapon
 {
     [SerializeField] private string sensorsLayerName = "Sensors";
+    [SerializeField] private ProceduralRecoil recoil;
 
     protected override void HandleShoot()
     {
+        recoil?.FireKick();
         Vector3 origin = playerCam.transform.position;
         Vector3 dir = playerCam.transform.forward;
 

@@ -2837,6 +2837,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
+--- !u!1 &1392143597 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5405806286226021446, guid: f2523cf10f7fd4f43a274705162aa968, type: 3}
+  m_PrefabInstance: {fileID: 156327245259251990}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1392143599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392143597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe1278abe0fb7445a3a3ed811c6c840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 0}
+  cyclesPerSecond: 1.5
+  radiusX: 0.05
+  radiusY: 0.02
+  useTopArc: 1
+  speedForFullSway: 3
+  smooth: 12
+  isSprinting: 0
+  isAiming: 0
+  sprintMultiplier: 1.5
+  aimMultiplier: 0.3
 --- !u!4 &1631687629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6935795394538536672, guid: 07f0bdaf5e5f1a74c82776bc5b37684a, type: 3}
@@ -2997,6 +3025,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 322848979}
     m_Modifications:
+    - target: {fileID: 4677949730840762205, guid: 07f0bdaf5e5f1a74c82776bc5b37684a, type: 3}
+      propertyPath: snap
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677949730840762205, guid: 07f0bdaf5e5f1a74c82776bc5b37684a, type: 3}
+      propertyPath: kickBack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677949730840762205, guid: 07f0bdaf5e5f1a74c82776bc5b37684a, type: 3}
+      propertyPath: kickAngle
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677949730840762205, guid: 07f0bdaf5e5f1a74c82776bc5b37684a, type: 3}
+      propertyPath: returnTime
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6334555601723800854, guid: 07f0bdaf5e5f1a74c82776bc5b37684a, type: 3}
       propertyPath: m_Name
       value: Pistol
@@ -3226,6 +3270,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 678895141909403588, guid: f2523cf10f7fd4f43a274705162aa968, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.17
+      objectReference: {fileID: 0}
     - target: {fileID: 937433864440714117, guid: f2523cf10f7fd4f43a274705162aa968, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.880719
@@ -3285,7 +3333,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5405806286226021446, guid: f2523cf10f7fd4f43a274705162aa968, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1392143599}
   m_SourcePrefab: {fileID: 100100000, guid: f2523cf10f7fd4f43a274705162aa968, type: 3}
 --- !u!1001 &1588736285817419158
 PrefabInstance:

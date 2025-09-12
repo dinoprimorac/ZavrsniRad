@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7484316443277491782}
   - component: {fileID: 2215292188456979425}
   - component: {fileID: 1480183670120342257}
+  - component: {fileID: 4677949730840762205}
   m_Layer: 7
   m_Name: Pistol
   m_TagString: Weapon
@@ -48,6 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wpData: {fileID: 11400000, guid: 421827f992b28b34aa42e3fbc45135a5, type: 2}
+  currentAmmo: 0
+  sensorsLayerName: Sensors
+  recoil: {fileID: 4677949730840762205}
 --- !u!65 &2215292188456979425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -82,6 +86,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDef: {fileID: 11400000, guid: 421827f992b28b34aa42e3fbc45135a5, type: 2}
+--- !u!114 &4677949730840762205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334555601723800854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 205e8a4aeec206742a77b45a1a6cd018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kickBack: 0.06
+  kickAngle: 6
+  returnTime: 0.08
+  snap: 18
 --- !u!1001 &5554285473078500262
 PrefabInstance:
   m_ObjectHideFlags: 0

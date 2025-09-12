@@ -1,68 +1,73 @@
 using UnityEngine;
 
-public class WeaponBob : MonoBehaviour
+public class WeaponBob: MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private Transform playerRoot;        // e.g., your Player
-    [SerializeField] private CharacterController cc;      // or Rigidbody (see below)
+    [Header("Player ref")]
+    [SerializeField] private CharacterController characterController; // assign your player's CC
 
-    [Header("Bobbing")]
-    [SerializeField] private float frequency = 7.5f;      // how fast it bobs
-    [SerializeField] private float amplitudeX = 0.03f;    // left-right sway
-    [SerializeField] private float amplitudeY = 0.02f;    // small up-down
-    [SerializeField] private float sprintMultiplier = 1.5f;
-    [SerializeField] private float aimMultiplier = 0.3f;  // scale when aiming
+    [Header("Arc Motion")]
+    [Tooltip("Oscillations per second (0→π→0). 1 = full left↔right takes 2s.")]
+    [SerializeField] private float cyclesPerSecond = 1.5f;
+    [Tooltip("Arc radii; set equal for a perfect semicircle.")]
+    [SerializeField] private float radiusX = 0.05f;
+    [SerializeField] private float radiusY = 0.05f;
+    [Tooltip("Top arc (y ≥ 0). Disable for bottom arc (y ≤ 0).")]
+    [SerializeField] private bool useTopArc = true;
+
+    [Header("Responsiveness")]
+    [Tooltip("Speed at which sway reaches full radius.")]
+    [SerializeField] private float speedForFullSway = 3.0f;
     [SerializeField] private float smooth = 12f;
 
-    [Header("State flags (optional external control)")]
+    [Header("Modifiers")]
     public bool isSprinting = false;
     public bool isAiming = false;
+    [SerializeField] private float sprintMultiplier = 1.3f;
+    [SerializeField] private float aimMultiplier = 0.35f;
 
-    private Vector3 _restLocalPos;
-    private float _t;
+    private Vector3 restPos;
+    private float phase; 
 
-    void Reset()
+    void Awake()
     {
-        if (!playerRoot) playerRoot = transform.root;
-        if (!cc) cc = playerRoot ? playerRoot.GetComponent<CharacterController>() : null;
+        restPos = transform.localPosition;
     }
 
-    void Awake() { _restLocalPos = transform.localPosition; }
+    private void Start()
+    {
+        characterController = GetComponentInParent<CharacterController>();
+    }
 
     void Update()
     {
-        // Horizontal speed magnitude (ignore Y)
-        float speed = 0f;
-        if (cc)
-        {
-            Vector3 v = cc.velocity; v.y = 0f;
-            speed = v.magnitude;
-        }
-        else if (playerRoot && playerRoot.TryGetComponent<Rigidbody>(out var rb))
-        {
-            Vector3 v = rb.linearVelocity; v.y = 0f;
-            speed = v.magnitude;
-        }
+        if (!characterController) return;
 
-        // Normalize to [0..1] “moving” factor (tweak 2.0f if needed)
-        float moveFactor = Mathf.Clamp01(speed / 2.0f);
+        Vector3 v = characterController.velocity; v.y = 0f;
+        float speed = v.magnitude;
+
+        float move = Mathf.Clamp01(speed / Mathf.Max(0.01f, speedForFullSway));
         float mult = (isSprinting ? sprintMultiplier : 1f) * (isAiming ? aimMultiplier : 1f);
+        float mf = move * mult;
 
-        // Advance time proportional to movement
-        _t += moveFactor * frequency * Time.deltaTime;
+        if (mf > 0.001f) phase += cyclesPerSecond * Time.deltaTime;
 
-        // Bob pattern: x = sin(t) (L/R), y = |cos(2t)| (subtle rise/fall)
-        float x = Mathf.Sin(_t) * amplitudeX * moveFactor * mult;
-        float y = Mathf.Abs(Mathf.Cos(_t * 2f)) * amplitudeY * moveFactor * mult;
+        float t  = Mathf.PingPong(phase, 1f);
+        float th = Mathf.Lerp(0f, Mathf.PI, t); 
+        float x  = Mathf.Cos(th) * radiusX * mf;  
+        float y  = Mathf.Sin(th) * radiusY * mf;  
+        if (!useTopArc) y = -y;
 
-        Vector3 target = _restLocalPos + new Vector3(x, y, 0f);
+        Vector3 target = restPos + new Vector3(x, y, 0f);
+
+        // smooth follow; snap back when stopped
         transform.localPosition = Vector3.Lerp(transform.localPosition, target, smooth * Time.deltaTime);
+        if (mf < 0.001f)
+            transform.localPosition = Vector3.Lerp(transform.localPosition, restPos, smooth * Time.deltaTime);
     }
 
-    // Call this if you re-equip or want to snap back immediately
     public void ResetPose()
     {
-        _t = 0f;
-        transform.localPosition = _restLocalPos;
+        phase = 0f;
+        transform.localPosition = restPos;
     }
 }
