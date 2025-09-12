@@ -7,23 +7,17 @@ public class EnemyStateMachine
     public void Initialize(EnemyState startingState)
     {
         Current = startingState;
-        Current?.EnterState();
+        Current?.Enter();
     }
 
     public void ChangeState(EnemyState newState)
     {
-        Current?.ExitState();
+        if (newState == null || newState == Current) return;
+        Current?.Exit();
         Current = newState;
-        Current.EnterState();
+        Current.Enter();
     }
 
-    public void Tick()
-    {
-        Current?.Tick();
-    }
-
-    public void OnAnimationEvent(string eventName)
-    {
-        Current?.OnAnimationEvent(eventName);
-    }
+    public void Tick()      => Current?.Tick();
+    public void FixedTick() => Current?.FixedTick();
 }

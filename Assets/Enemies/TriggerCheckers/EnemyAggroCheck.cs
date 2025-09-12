@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class EnemyAggroCheck : MonoBehaviour
 {
-    private Enemy _enemy;
-    private void Awake() => _enemy = GetComponentInParent<Enemy>();
+    private EnemyBase _enemy;
+    private void Awake() => _enemy = GetComponentInParent<EnemyBase>();
+
+    private static Transform RootOf(Collider c) =>
+        c.attachedRigidbody ? c.attachedRigidbody.transform : c.transform;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-            _enemy.SetTarget(other.transform);
+        var t = RootOf(other);
+        if (t.CompareTag("Player")) _enemy.SetTarget(t);
     }
 }
