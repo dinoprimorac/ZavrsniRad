@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5c2e9db24574c614281c050a78e8dd0e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - wpData: {fileID: 11400000, guid: 421827f992b28b34aa42e3fbc45135a5, type: 2}
+  - sfx: {instanceID: 0}
+  - shootSfx: {instanceID: 0}
+  - recoil: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
