@@ -1,0 +1,15 @@
+.header {
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    justify-content: flex-start;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}
+
+.button {
+    align-self: center;
+    align-content: center;
+    align-items: auto;
+    justify-content: flex-start;
+}

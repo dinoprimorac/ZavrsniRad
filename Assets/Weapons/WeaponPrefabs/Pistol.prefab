@@ -52,6 +52,9 @@ MonoBehaviour:
   wpData: {fileID: 11400000, guid: 421827f992b28b34aa42e3fbc45135a5, type: 2}
   sfx: {fileID: 7191603930607135154}
   shootSfx: {fileID: 8300000, guid: 6e56bf64f724b724fa0111029e3d3aba, type: 3}
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   sensorsLayerName: Sensors
   recoil: {fileID: 6689871638039205381}
 --- !u!65 &2215292188456979425
@@ -101,7 +104,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 6e56bf64f724b724fa0111029e3d3aba, type: 3}
   m_Resource: {fileID: 8300000, guid: 6e56bf64f724b724fa0111029e3d3aba, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.336
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1b5e7016f1cf6e46a3f9f87509a907b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  restartDelay: 1
 --- !u!114 &4759943133903717120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +374,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   equippedIndex: 0
+  currentWeapon: {fileID: 0}
 --- !u!114 &458691824207825192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +398,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 678895141909403588}
+  - component: {fileID: 6209801648842545190}
   m_Layer: 3
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -413,9 +415,32 @@ Transform:
   m_GameObject: {fileID: 5405806286226021446}
   serializedVersion: 2
   m_LocalRotation: {x: 0.032675162, y: -0, z: -0, w: 0.99946606}
-  m_LocalPosition: {x: 0.154, y: -0.162, z: 0.46}
+  m_LocalPosition: {x: 0.154, y: -0.202, z: 0.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1963214667838599692}
   m_LocalEulerAnglesHint: {x: 3.745, y: 0, z: 0}
+--- !u!114 &6209801648842545190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5405806286226021446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abe1278abe0fb7445a3a3ed811c6c840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 0}
+  cyclesPerSecond: 1.5
+  radiusX: 0.05
+  radiusY: 0.02
+  useTopArc: 1
+  speedForFullSway: 3
+  smooth: 12
+  isSprinting: 0
+  isAiming: 0
+  sprintMultiplier: 1.5
+  aimMultiplier: 0.3
